@@ -66,6 +66,7 @@
         scene.add(directionalLight);
 
         var flg = -1;
+        var sflg = false;
 
         function createwagasa1() {
             const sirusi_geometry = new THREE.BoxGeometry(0.01, 0.01, 0.01);
@@ -177,8 +178,28 @@
         wagasa10.position.set((Math.random() + 1.5), (Math.random() - 0.5), -4);
         markerRoot.add(wagasa10);
 
+        const listener = new THREE.AudioListener();
+        camera.add(listener);
+        const AudioLoader = new THREE.AudioLoader();
+        const Sound = new THREE.Audio(listener);
+        // AudioLoader.load('./BGM1.mp3', function (buffer) {
+        //     Sound.setBuffer(buffer);
+        //     Sound.setLoop(true);
+        //     Sound.setVolume(0.1);
+        //Sound.play();
+        // });
+        AudioLoader.load('./BGM2.mp3', function (buffer) {
+            Sound.setBuffer(buffer);
+            Sound.setLoop(true);
+            Sound.setVolume(0.04);
+            Sound.play();
+        });
+
+
+
         function animate() {
             requestAnimationFrame(animate);
+
             wagasa1.position.z += 0.2 / 10;
             wagasa2.position.z += 0.33 / 10;
             wagasa3.position.z += 0.14 / 10;
@@ -190,6 +211,7 @@
             wagasa9.position.z += 0.16 / 10;
             wagasa10.position.z += 0.39 / 10;
             if (flg != -1) {
+
                 wagasa1.rotation.x += Math.PI / 180 * 3;
                 wagasa1.rotation.z += Math.PI / 180 * 2;
                 wagasa2.rotation.x += Math.PI / 180 * 4;
