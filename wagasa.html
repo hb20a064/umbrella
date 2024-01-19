@@ -191,8 +191,7 @@
         AudioLoader.load('./BGM2.mp3', function (buffer) {
             Sound.setBuffer(buffer);
             Sound.setLoop(true);
-            Sound.setVolume(0.04);
-            Sound.play();
+            Sound.setVolume(0.01);
         });
 
 
@@ -279,6 +278,10 @@
         animate();
 
         window.addEventListener("mousedown", function (ret) {
+            if(sflg == false){
+                Sound.play();
+                sflg = true;
+            }
             let mouseX = ret.clientX;                           // マウスのx座標
             let mouseY = ret.clientY;                           // マウスのy座標
             //console.log(mouseX + " : " + mouseY);
